@@ -1,0 +1,7 @@
+.container__delete {
+  cursor: pointer;
+}
+
+.container__filename {
+  width: 60%;
+}

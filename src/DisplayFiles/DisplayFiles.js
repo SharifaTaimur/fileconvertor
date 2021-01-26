@@ -1,45 +1,61 @@
 import React from "react";
 import { useStateValue } from "./../Stateprovider";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import { CSVLink } from "react-csv";
+import DeleteIcon from "@material-ui/icons/Delete";
+import "./DisplayFiles.css";
+import { Row, Col } from "react-bootstrap";
 
 const DisplayFiles = () => {
-  const [
-    { files, currentfile, lastmodified, filename },
-    dispatch,
-  ] = useStateValue();
+  const [{ files }, dispatch] = useStateValue();
 
-  console.log("DisplayFiles", currentfile);
+  const removeFromFolder = (id) => {
+    dispatch({
+      type: "REMOVE_FROM_FOLDER",
+      id: id,
+    });
+  };
+
+  console.log("DisplayFiles", files);
   return (
     <div>
-      <h1>Files</h1>
       <div className="container">
-        <Table striped bordered hover variant="dark">
+        <Table striped bordered hover variant="dark" className="text-center">
           <thead>
             <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>File Name</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {files.map((file) => (
+              <tr key={file.id}>
+                <th className="container__filename">{file.filename}</th>
+                <th>
+                  <Row>
+                    <Col>
+                      <Button variant="info">
+                        <CSVLink
+                          //   filename={`${file.filename}.csv`}
+                          data={file.files}
+                          style={{ color: "white", textDecoration: "none" }}
+                        >
+                          Export to CSV
+                        </CSVLink>
+                      </Button>
+                    </Col>
+                    <Col>
+                      <DeleteIcon
+                        className="container__delete"
+                        style={{ fontSize: 30 }}
+                        onClick={() => removeFromFolder(file.id)}
+                      />
+                    </Col>
+                  </Row>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>
