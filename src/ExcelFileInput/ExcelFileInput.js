@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { useStateValue } from "./Stateprovider";
+import { useStateValue } from "../Stateprovider";
 import * as XLSX from "xlsx";
 import { CSVLink } from "react-csv";
-import DisplayFiles from "./DisplayFiles/DisplayFiles";
+import DisplayFiles from "../DisplayFiles/DisplayFiles";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import { v4 as uuid } from "uuid";
 import { Container, Row, Col } from "react-bootstrap";
+import "./ExcelFileInput.css";
 
-const Test = () => {
+const ExcelFileInput = () => {
   const [items, setItems] = useState([]);
   const [{ files }, dispatch] = useStateValue();
   // const [currentfile, setCurrentfile] = useState([]);
@@ -70,16 +71,15 @@ const Test = () => {
 
   return (
     <>
-      <Container>
+      <div className="container">
         <Card
           style={{
             width: "58rem",
-            fontWeight: "bold",
-            fontSize: "20px",
           }}
           bg="dark"
+          className="container__card"
         >
-          <Card.Header style={{ color: "white" }}>Upload Files</Card.Header>
+          <Card.Header style={{ color: "white" }}>File Upload</Card.Header>
           <Card.Body style={{ background: "white" }}>
             <Row>
               <Col>
@@ -87,7 +87,7 @@ const Test = () => {
                   <Form.Group>
                     <Form.File
                       id="custom-file-translate-scss"
-                      label="Custom file input"
+                      label="Upload File"
                       lang="en"
                       custom
                       onChange={(e) => {
@@ -115,19 +115,15 @@ const Test = () => {
             </Row>
           </Card.Body>
         </Card>
-        <hr />
+      </div>
+      <hr />
+      <div className="container__table">
         <Row>
           <Col>{files.length > 0 ? <DisplayFiles /> : null}</Col>
         </Row>
-
-        {/* <div className="row">
-        <div className=" col-12 text-center">
-          {files.length > 0 ? <DisplayFiles /> : null}
-        </div>
-      </div> */}
-      </Container>
+      </div>
     </>
   );
 };
 
-export default Test;
+export default ExcelFileInput;

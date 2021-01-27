@@ -17,48 +17,56 @@ const DisplayFiles = () => {
     });
   };
 
-  console.log("DisplayFiles", files);
   return (
-    <div>
-      <div className="container">
-        <Table striped bordered hover variant="dark" className="text-center">
-          <thead>
-            <tr>
-              <th>File Name</th>
-              <th></th>
+    <div className="tablesection">
+      {/* <div className="container"> */}
+
+      <Table
+        striped
+        bordered
+        hover
+        variant="dark"
+        className="text-center table"
+      >
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {files.map((file) => (
+            <tr key={file.id}>
+              <th className="container__filename">{file.filename}</th>
+              <th>
+                <Row>
+                  <Col>
+                    <Button variant="info" style={{ background: "#9370DB" }}>
+                      <CSVLink
+                        //   filename={`${file.filename}.csv`}
+                        data={file.files}
+                        style={{
+                          color: "white",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Export to CSV
+                      </CSVLink>
+                    </Button>
+                  </Col>
+                  <Col>
+                    <DeleteIcon
+                      className="container__delete"
+                      style={{ fontSize: 30 }}
+                      onClick={() => removeFromFolder(file.id)}
+                    />
+                  </Col>
+                </Row>
+              </th>
             </tr>
-          </thead>
-          <tbody>
-            {files.map((file) => (
-              <tr key={file.id}>
-                <th className="container__filename">{file.filename}</th>
-                <th>
-                  <Row>
-                    <Col>
-                      <Button variant="info">
-                        <CSVLink
-                          //   filename={`${file.filename}.csv`}
-                          data={file.files}
-                          style={{ color: "white", textDecoration: "none" }}
-                        >
-                          Export to CSV
-                        </CSVLink>
-                      </Button>
-                    </Col>
-                    <Col>
-                      <DeleteIcon
-                        className="container__delete"
-                        style={{ fontSize: 30 }}
-                        onClick={() => removeFromFolder(file.id)}
-                      />
-                    </Col>
-                  </Row>
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 };

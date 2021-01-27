@@ -5,3 +5,14 @@
 .container__filename {
   width: 60%;
 }
+
+.table {
+  width: 58rem !important;
+}
+
+.tablesection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
