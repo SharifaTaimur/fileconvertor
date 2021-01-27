@@ -6,18 +6,12 @@ import DisplayFiles from "../DisplayFiles/DisplayFiles";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import { v4 as uuid } from "uuid";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import "./ExcelFileInput.css";
 
 const ExcelFileInput = () => {
   const [items, setItems] = useState([]);
   const [{ files }, dispatch] = useStateValue();
-  // const [currentfile, setCurrentfile] = useState([]);
-  // const [filename, setFilename] = useState();
-  // const [lastmodified, setLastmodified] = useState("");
-
-  // NEW
-  const [selectedFiles, setSelectedFiles] = useState(undefined);
   const [progress, setProgress] = useState(0);
 
   const readExcel = (file) => {

@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# File Convertor
+
+![Getting Started](./FileConvertor.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## APPROACH USED:
+
+User uploads excel file.
+Content of the excel file is read using Sheetjs.
+Read data is returned in JSON format.
+Then to generate a CSV file(by passing the retrieved JSON data),I make use of react-csv.
 
 ## Available Scripts
 

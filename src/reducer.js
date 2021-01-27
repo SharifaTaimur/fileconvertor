@@ -1,8 +1,5 @@
 export const initialState = {
   files: [],
-  // currentfile: [],
-  // lastmodified: "",
-  // filename: "",
 };
 
 const reducer = (state, action) => {
